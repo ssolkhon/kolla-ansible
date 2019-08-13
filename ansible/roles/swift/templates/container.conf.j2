@@ -12,7 +12,11 @@ log_level = {{ swift_log_level }}
 workers = {{ openstack_service_workers }}
 
 [pipeline:main]
-pipeline = container-server
+pipeline = recon container-server
+
+[filter:recon]
+use = egg:swift#recon
+recon_cache_path = /var/cache/swift
 
 [app:container-server]
 use = egg:swift#container
